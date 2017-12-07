@@ -1,5 +1,5 @@
 <?php
-//$aksi = 'add new'; 
+//$aksi = 'add new';
 //$aksi = 'add new';
 if($aksi == 'edit'){
 		foreach ($data_list as $v1) {
@@ -9,11 +9,10 @@ if($aksi == 'edit'){
 			$id_activity		= $v1->from_id_activity;
 
 			//$member = $member;
-			//$task_member = $member_on;
 		}
 	}
 
-	
+
 	else if($aksi == 'add new'){
 			$id_activity = $id_activity;
 			$id_list 	= null;
@@ -28,7 +27,7 @@ echo '
 	  <input type="hidden" class="form-control" id="id_activity" name="id_activity" value="'.$id_activity.'" placeholder="id task">
 	  <input type="hidden" class="form-control" id="id_list" name="id_list" value="'.$id_list.'" placeholder="id activity">
 	  <div class="form-group">
-	    <div class="col-sm-12">	
+	    <div class="col-sm-12">
 	      <textarea class="form-control" id="nama_list" name="nama_list" rows="3" >
 	      '.$nama_list.'</textarea>
 	    </div>
@@ -36,7 +35,7 @@ echo '
 
 if($aksi == 'add new'){
 	echo '
-		<div class="col-sm-12">	
+		<div class="col-sm-12">
 	     <input type="checkbox" name="status_list" value="done" id="status_list" > Done</input>
 	    </div>
 	';
@@ -44,29 +43,29 @@ if($aksi == 'add new'){
 }else {
 	if($status_list == 'done'){
 		echo '
-			<div class="col-sm-12">	
+			<div class="col-sm-12">
 		     <input type="checkbox" name="status_list" value="done" id="status_list" checked> Done</input>
 		    </div>
 		';
 	}else {
 		echo '
-			<div class="col-sm-12">	
+			<div class="col-sm-12">
 		     <input type="checkbox" name="status_list" value="done" id="status_list" > Done</input>
 		    </div>
 		';
 	}
-} 
-	  	
+}
+
 
 echo'  </div>
-	  <div class="form-group"> 
+	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
 	      <button type="submit" class="btn btn-default">Submit</button>
 	    </div>
 	  </div>
 	</form>
 	  ';
-?>	  
+?>
 
 <script>
 	$(document).ready(function(){
@@ -97,6 +96,6 @@ echo'  </div>
 							//$('#form_activity')[0].reset();
 						}
 			}); view_task(id,id_p);
-	    });	   
-}); 
+	    });
+});
 </script>
