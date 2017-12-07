@@ -117,7 +117,8 @@ function m_update_activity($values){      // Update data project
 
         $query = $this->db->query("INSERT INTO t_list_activity(list_activity,status_list,from_id_Activity,date_activity)
                                     VALUES('$nama_list','$status','$id_activity','$date') ");
-        if($query){$result = 'ok';}else  $result = 'no';
+
+        if($query){$result = $this->db->insert_id();}else  $result = 'failed';
                                    return $result;
     }
     function m_update_list($values){
@@ -136,10 +137,21 @@ function m_update_activity($values){      // Update data project
           $query = $this->db->query("UPDATE t_list_activity
                                 SET list_activity='$nama_list', status_list='$status', date_activity='$date'
                                 WHERE id_list =' $id_list' ");
-            if($query){$result = 'ok';}else  $result = 'no';
+            if($query){$result = 'ok';}else  $result = 'failed';
                 return $result;
     }
-
+    function m_task_activity($value0){               //
+                            //$this->db->where('from_id_task',$value0)
+          return  $query =  $this->db->query("SELECT id_activity, nama_activity, status_activity, nama_user, id_user
+                                                FROM tabel_activity a, tabel_user b
+                                                WHERE a.from_id_user = b.id_user
+                                                    AND a.from_id_task = '$value0'
+                                                ORDER BY id_activity ASC ")->result();
+    }
+    function m_list_activity(){               //
+              $this->db->order_by('id_list','DESC');
+              return  $query =  $this->db->get('t_list_activity')->result();
+    }
 }
 
 

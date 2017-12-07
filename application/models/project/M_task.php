@@ -40,18 +40,8 @@ function m_user_task($value0){               // ambil daftar anggota yg di tugas
                                                                     WHERE from_id_task = '$value0')")->result();
     }
 
-    function m_task_activity($value0){               //
-                            //$this->db->where('from_id_task',$value0)
-          return  $query =  $this->db->query("SELECT id_activity, nama_activity, status_activity, nama_user, id_user
-                                                FROM tabel_activity a, tabel_user b
-                                                WHERE a.from_id_user = b.id_user
-                                                    AND a.from_id_task = '$value0'
-                                                ORDER BY id_activity DESC ")->result();
-    }
-    function m_list_activity(){               //
-              $this->db->order_by('id_list','DESC');
-              return  $query =  $this->db->get('t_list_activity')->result();
-    }
+
+
 
 function m_insert_task($values){               // add new project
             $data = array(

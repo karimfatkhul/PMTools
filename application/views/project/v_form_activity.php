@@ -111,9 +111,28 @@ echo '
 						success: function(data){
 
 							$('#message').html(data['mssg']);
-							//$('#form_activity')[0].reset();
+							 $('#nama_activity').val('');
+							 $('input[name=member]').attr('checked',false);
+							 window.setTimeout(function(){success_add();},2000)
 						}
 			}); //view_task(id,id_p);
 	    });
 });
+</script>
+<script>
+function success_add(){
+
+	var role 	= "<?php echo $role?>";
+	var actor = "<?php echo $actor?>";
+	var id 		= "<?php echo $id_task?>";
+	$.ajax({
+				type:"POST",
+				data: {id:id, role:role, actor:actor},
+				url: "<?php echo base_url('index.php/project/c_activity/activity_list'); ?>",
+				success: function(data){
+					$('#list_activity_board').html(data);
+				}
+			});
+		}
+
 </script>
