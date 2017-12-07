@@ -58,8 +58,6 @@ $this->load->library('session');
 
 		$data['data_task'] = $this->m_task->m_view_task($data['id_task']);
 		$data['member_on'] = $this->m_task->m_user_task($data['id_task']);
-		$data['activityes'] = $this->m_task->m_task_activity($data['id_task']);
-		$data['list'] = $this->m_task->m_list_activity();
 
 
 	  if($data['aksi'] == 'edit'){

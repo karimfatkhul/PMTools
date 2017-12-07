@@ -17,7 +17,7 @@ $this->load->library('session');
   function add_activity(){
     $data['id_task'] = $this->input->POST('id');
     $data['role'] = $this->input->POST('role');
-
+    $data['actor']    = $this->input->POST('actor');
     $data['aksi'] = $this->input->POST('aksi');
 
     if($data['role'] == 'project leader'){
@@ -26,6 +26,17 @@ $this->load->library('session');
 
     //echo json_encode($data);
     $this->load->view('project/v_form_activity', $data);
+  }
+
+  function activity_list(){
+    $data['id_task']  =$this->input->POST('id');
+    $data['role']     =$this->input->POST('role');
+    $data['actor']    = $this->input->POST('actor');
+
+    $data['activityes'] = $this->m_activity->m_task_activity($data['id_task']);
+    $data['list'] = $this->m_activity->m_list_activity();
+
+    $this->load->view('project/v_activity', $data);
   }
 
   function view_activity(){
@@ -43,12 +54,14 @@ $this->load->library('session');
   }
   function insert_activity(){
     $nama_activity = $this->input->POST('nama_activity');
-
+    $data['id_list'] =   0;
     if(ctype_space($nama_activity) || $nama_activity==null){
       $data ['mssg'] = 'name of activity is empty!!';
     }else{
       $result = $this->m_activity->m_insert_activity($_POST);
-      if($result == 'ok'){
+      if($result != 'failed'){
+        $data['id_list'] =   $result;
+
         $data ['mssg'] = 'success full add new activity';
       }else if($result == 'failed'){
         $data ['mssg'] = 'failed add new activity!!';
