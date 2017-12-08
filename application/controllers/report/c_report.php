@@ -27,6 +27,7 @@ if ($this->session->userdata('akses') == null) {
 			$data['list_user'] = $this->db->get('tabel_user')->result();
 															$this->db->select('from_id_user');
 															$this->db->select('date_report');
+															$this->db->order_by('from_id_user','asc');
       $data['list_report'] = $this->db->get('tabel_report')->result();
       $data['today_report'] = $this->m_report->m_today_report($date);
 

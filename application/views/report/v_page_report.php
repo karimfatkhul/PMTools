@@ -13,7 +13,7 @@
 						  	<div class="box-body" style="min-height:450px">
 						  		<table class="table table-condensed table-hover">
 										<?php
-										$nama_2 = null ;
+										$nama_2 = null ;$date_2 = null ;
 										if(count($list_report) > 0){
 											foreach ($list_user as $u) {
 												$id_user	 	= $u->id_user;
@@ -21,11 +21,14 @@
 
 														foreach ($list_report as $u2) {
 																	//$id_report	 		= $u2->id_report;
-																	$date_report 			= $u2->date_report;
+																	$date_report			= $u2->date_report;
 																	$from_id_user 		= $u2->from_id_user;
 																	//$nama_project 		= $u2->nama_project;
 
 																	if($from_id_user == $id_user){
+																		if($date_report >= $date_2){
+																			$date_2 = $date_report;
+																		}
 																		if($nama_user != $nama_2){
 																			echo'
 																				<tr>
@@ -35,15 +38,14 @@
 																						</a>
 																					</td>
 																					<td>
-																						'.$date_report.'
+																						'.$date_2.'
 																					</td>
 																				';
 																				$nama_2 = $nama_user;
 																		}
 																	}
-
 														}
-
+														$date_2 = null;
 													}
 										}else {
 													echo '<tr><td colspan="2">Belum ada report untuk hari ini.</td></tr>';
